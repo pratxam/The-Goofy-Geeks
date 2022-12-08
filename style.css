@@ -28,15 +28,17 @@ nav{
 .navbar-nav{
     flex: 1;
     text-align: right;
+    
 }
 #navbarNavDropdown ul li{
     list-style: none;
     display: inline-block;
     position: relative;
     padding: 0px 30px;
+  
 }
 #navbarNavDropdown ul li a{
-    color: hsl(229deg 71% 33%);
+    color: rgb(11, 53, 242);
     text-decoration: none;
     font-size: 20px;
 }
@@ -44,10 +46,10 @@ nav{
     content: '';
     width: 0%;
     height: 2px;
-    background: rgb(218, 16, 63);
+    background: rgb(154, 10, 250);
     display: block;
     margin: auto;
-    transition: 0.5s;
+    transition: 0.3s;
 }
 #navbarNavDropdown ul li:hover::after{
     width: 100%;
@@ -68,7 +70,17 @@ nav{
     margin: 10px 0 40px;
     font-size: 20px;
 }
-
+.collapse{
+    margin-left: 200px;
+}
+.nav-item:hover{
+    background-color: rgb(172, 172, 248);
+    /* border:1px solid black; */
+    border-radius: 10px;
+    transition:0.8s;
+    color: white;
+    font-weight: 900;
+}
 
 
 
