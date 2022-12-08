@@ -25,22 +25,22 @@ nav{
     align-items: center;
     mix-blend-mode: multiply;
 }
-.navlinks{
+.navbar-nav{
     flex: 1;
     text-align: right;
 }
-.navlinks ul li{
+#navbarNavDropdown ul li{
     list-style: none;
     display: inline-block;
     position: relative;
     padding: 0px 30px;
 }
-.navlinks ul li a{
+#navbarNavDropdown ul li a{
     color: hsl(229deg 71% 33%);
     text-decoration: none;
     font-size: 20px;
 }
-.navlinks ul li::after{
+#navbarNavDropdown ul li::after{
     content: '';
     width: 0%;
     height: 2px;
@@ -49,7 +49,7 @@ nav{
     margin: auto;
     transition: 0.5s;
 }
-.navlinks ul li:hover::after{
+#navbarNavDropdown ul li:hover::after{
     width: 100%;
 }
 .text{
