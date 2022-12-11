@@ -6,9 +6,12 @@
 .header{
     min-height: 100vh;
     width: 100%;
-    background:linear-gradient(#cc2b5e, #753a88) ;
+    background:rgba(0,0,0,0.5)url(1.jpeg);
     background-position: center;
     background-size: cover;
+    position: relative;
+    background-blend-mode: darken;
+
 }
 .header::before{
     content: "";
@@ -36,7 +39,7 @@ nav{
   
 }
 #navbarNavDropdown ul li a{
-    color: rgb(6, 188, 201);
+    color: rgb(11, 70, 134);
     text-decoration: none;
     font-size: 22px;
     font-family:'Times New Roman', Times, serif;
@@ -46,13 +49,20 @@ nav{
     content: '';
     width: 0%;
     height: 2px;
-    background: rgb(154, 10, 250);
+     background: rgb(222, 211, 230); 
     display: block;
-    margin: auto;
+    /* margin: auto; */
     transition: 0.3s;
+}
+#navbarNavDropdown{
+    flex: 1;
+    text-align: right;
 }
 #navbarNavDropdown ul li:hover::after{
     width: 100%;
+}
+#navbarNavDropdown ul li a:hover{
+        color: rgb(25, 7, 7);
 }
 .text{
     width: 100%;
@@ -60,23 +70,23 @@ nav{
     top: 50%;
     left: 50%;
     color: #eef0f6;
-    transform: translate(-50%,-50%);
+     transform: translate(-50%,-50%); 
     text-align: center;
 }
 .text h1{
     font-size: 70px;
 }
 .text p{
-    margin: 10px 0 40px;
+    /* margin: 10px 0 40px; */
     font-size: 20px;
 }
 .collapse{
-    margin-left: 200px;
+    margin-left: 150px; 
 }
 .nav-item:hover{
-    background-color: rgb(172, 172, 248);
+    /* background-color: rgb(172, 172, 248);  */
     /* border:1px solid black; */
-    border-radius: 10px;
+    /* border-radius: 10px;  */
     transition:0.8s;
     color: white;
     font-weight: 900;
@@ -86,4 +96,39 @@ nav{
     display: inline-block;
     position: relative;
 }
+.new1{
+    height: 700px;
+    color: white;
+    background: url(5.jpeg);
+    background-size: 100%;
+    width: 70% ;
+    margin-top: 100px;
+    margin-left: 240px;
+    max-height: 500px;
+    margin-bottom: 100px;
+    display: block;
+    border: 10px solid darkgoldenrod;
+    border-radius: 20px;
+}
+/*.carousel-item img{
+    position: relative;
+    height: 300px;
+    border-radius: 50px;
+    max-width: 50%;
+    display:inline-block;
+    margin: 0px auto;
+}*/
+.carousel-indicators{
+    top: 400px;
+}
+.carousel-inner{
+    text-align: center;
+    top: 200px;  
+}
+.carousel-control-prev{
+    top: 220px;
+}
+.carousel-control-next{
+    top:220px;
 
+}
