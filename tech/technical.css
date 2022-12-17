@@ -60,13 +60,13 @@ body{
     text-shadow: 1px 0px 2px #262654;
 }
 .card:nth-child(1) .card-image{
-    background-image: url(coding.jpg);
+    background-image: url(c1e1.jpg);
 }
 .card:nth-child(2) .card-image{
-    background-image: url(tech2.jpg);
+    background-image: url(c1e2.jpg);
 }
 .card:nth-child(3) .card-image{
-    background-image: url(img\ tech.jpg);
+    background-image: url(c1e3.jpg);
 }
 .card:hover{
     background: #e84393;

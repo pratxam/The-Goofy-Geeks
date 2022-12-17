@@ -99,7 +99,8 @@ nav{
 .new1{
     height: 700px;
     color: white;
-    background: url(5.jpeg);
+    background: url(6.jpg) ;
+    opacity: 0.6;
     background-size: 100%;
     width: 70% ;
     margin-top: 100px;
@@ -107,7 +108,7 @@ nav{
     max-height: 500px;
     margin-bottom: 100px;
     display: block;
-    border: 10px solid darkgoldenrod;
+    border: 10px solid rgb(240, 229, 199);
     border-radius: 20px;
 }
 /*.carousel-item img{
