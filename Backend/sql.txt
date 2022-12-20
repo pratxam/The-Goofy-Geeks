@@ -1,3 +1,4 @@
+
 CREATE TABLE `club` (
   `Cid` bigint NOT NULL,
   `Cname` varchar(45) NOT NULL,
@@ -10,36 +11,41 @@ CREATE TABLE `club` (
   PRIMARY KEY (`Cid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `members` (
-  `Uid` bigint NOT NULL,
-  `Uname` varchar(45) NOT NULL,
-  `Password` varchar(45) NOT NULL,
-  `Admin` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`Uid`)
+CREATE TABLE `admin` (
+  `aid` bigint NOT NULL,
+  `cid` bigint NOT NULL,
+  PRIMARY KEY (`aid`),
+  KEY `cid_idx` (`cid`),
+  CONSTRAINT `aid` FOREIGN KEY (`aid`) REFERENCES `members` (`Uid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `cid` FOREIGN KEY (`cid`) REFERENCES `club` (`Cid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 
 CREATE TABLE `event` (
   `Eid` bigint NOT NULL,
   `Ename` varchar(45) NOT NULL,
   `Edate` date NOT NULL,
-  `Edescription` varchar(500) NOT NULL,
+  `Edescription` varchar(1000) NOT NULL,
   `Esummary` varchar(100) DEFAULT NULL,
   `Rlink` varchar(100) NOT NULL,
-  `Cid` bigint NOT NULL,
+  `C_id` bigint NOT NULL,
   PRIMARY KEY (`Eid`),
-  KEY `Cid_idx` (`Cid`),
-  CONSTRAINT `Cid` FOREIGN KEY (`Cid`) REFERENCES `club` (`Cid`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `Cid_idx` (`C_id`),
+  CONSTRAINT `C_id` FOREIGN KEY (`C_id`) REFERENCES `club` (`Cid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `members` (
+  `Uid` bigint NOT NULL,
+  `Uname` varchar(45) NOT NULL,
+  `Password` varchar(100) NOT NULL,
+  PRIMARY KEY (`Uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `register` (
   `Uid` bigint NOT NULL,
   `Eid` bigint NOT NULL,
-  `Rdata` varchar(100) DEFAULT NULL,
+  `Rdata` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`Uid`,`Eid`),
-  KEY `Uid_idx` (`Uid`),
   KEY `Eid_idx` (`Eid`),
   CONSTRAINT `Eid` FOREIGN KEY (`Eid`) REFERENCES `event` (`Eid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `Uid` FOREIGN KEY (`Uid`) REFERENCES `members` (`Uid`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `Uid` FOREIGN KEY (`Uid`) REFERENCES `members` (`Uid`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
