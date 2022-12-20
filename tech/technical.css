@@ -60,13 +60,13 @@ body{
     text-shadow: 1px 0px 2px #262654;
 }
 .card:nth-child(1) .card-image{
-    background-image: url(coding.jpg);
+    background-image: url(c1e1.jpg);
 }
 .card:nth-child(2) .card-image{
-    background-image: url(tech2.jpg);
+    background-image: url(c1e2.jpg);
 }
 .card:nth-child(3) .card-image{
-    background-image: url(img\ tech.jpg);
+    background-image: url(c1e3.jpg);
 }
 .card:hover{
     background: #e84393;
@@ -98,4 +98,29 @@ body{
 }
 .card:nth-child(3) .card-image2{
     background-image: url(c2e3.jpg);
+}
+
+.container#blur.active{
+    filter: blur(20px);
+    pointer-events: none;
+    user-select: none;
+}
+#popup{
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    padding: 50px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    background: rgb(220, 220, 220);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+}
+#popup.active{
+    top:40%;
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s;
 }
