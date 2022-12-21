@@ -1,0 +1,76 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body
+{
+    background: url(11.jpeg);
+}
+.Contactus
+{
+    position: relative;
+    width: 100%;
+    padding: 40px 100px;
+}
+.Contactus .title
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+}
+.Contactus .title h2
+{
+    color: #fff;
+    font-weight: 500;
+}
+/* .form */
+/* { */
+    /* grid-area: form; */
+/* } */
+/* .info
+{
+    grid-area: info;
+}
+.map
+{
+    grid-area: map;
+} */
+.contact
+{
+    padding: 40px;
+    background: #fff;
+    box-shadow: 0 5px 35px rgba(0, 0, 0, 15);
+}
+.box
+{
+    position: relative;
+    display: grid;
+    margin-top: 50px;
+    /* grid-template-columns: 2fr 1fr; */
+}
+.contact h3
+{
+    font-weight: 500;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+.formbox
+{
+    position: relative;
+    width: 100%;
+}
+.formbox .row50
+{
+    display: flex;
+    gap: 20px;
+}
+.inputbox
+{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+
+}
