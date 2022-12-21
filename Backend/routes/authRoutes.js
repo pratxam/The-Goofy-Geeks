@@ -8,4 +8,4 @@ router.route("/updateUser/:id").patch(updateUser);
 router.route("/deleteUser/:id").delete(deleteUser);
 router.route("/getallEvents").get(getallEvents);
 
-export default router;
+export default router

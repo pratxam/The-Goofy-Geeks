@@ -1,0 +1,48 @@
+<<<<<<< HEAD
+=======
+CREATE TABLE `club` (
+  `Cid` bigint NOT NULL,
+  `Cname` varchar(45) NOT NULL,
+  `Cpresident` varchar(45) NOT NULL,
+  `Csummary` varchar(100) DEFAULT NULL,
+  `Cdescription` varchar(500) NOT NULL,
+  `Ctype` varchar(45) NOT NULL,
+  `No_of_members` int DEFAULT NULL,
+  `Cwebsite` varchar(100) NOT NULL,
+  PRIMARY KEY (`Cid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `members` (
+  `Uid` bigint NOT NULL,
+  `Uname` varchar(45) NOT NULL,
+  `Password` varchar(45) NOT NULL,
+  `Admin` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`Uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `event` (
+  `Eid` bigint NOT NULL,
+  `Ename` varchar(45) NOT NULL,
+  `Edate` date NOT NULL,
+  `Edescription` varchar(500) NOT NULL,
+  `Esummary` varchar(100) DEFAULT NULL,
+  `Rlink` varchar(100) NOT NULL,
+  `Cid` bigint NOT NULL,
+  PRIMARY KEY (`Eid`),
+  KEY `Cid_idx` (`Cid`),
+  CONSTRAINT `Cid` FOREIGN KEY (`Cid`) REFERENCES `club` (`Cid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `register` (
+  `Uid` bigint NOT NULL,
+  `Eid` bigint NOT NULL,
+  `Rdata` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`Uid`,`Eid`),
+  KEY `Uid_idx` (`Uid`),
+  KEY `Eid_idx` (`Eid`),
+  CONSTRAINT `Eid` FOREIGN KEY (`Eid`) REFERENCES `event` (`Eid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `Uid` FOREIGN KEY (`Uid`) REFERENCES `members` (`Uid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+>>>>>>> parent of 6f46893 (created event routes and controllers)
