@@ -3,8 +3,11 @@ import bcrypt from 'bcryptjs'
 import { createCustomError } from "../errors/customError.js";
 import connection from '../database.js';
 
+
 //SIGNUP USER
 export const signUp = async (req, res, next) => {
+    
+    
     let flag = 0;
     try {
         const { email, password } = req.body;
@@ -31,8 +34,8 @@ export const signUp = async (req, res, next) => {
             connection.query(`INSERT INTO members ( Uname, Password) VALUES ("${email}", "${hashedPassword}")`,
                 (err, results) => {
                     if (err) throw err;
-                    const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "1h" });
-
+                    const token = jwt.sign({ email }, "goofygeeks", { expiresIn: "1h" });
+                    
                     res.status(201).json({
                         user: {
                             email: email,
@@ -69,7 +72,7 @@ export const login = async (req, res, next) => {
                         return res.status(400).json({ msg: "Incorrect password" });
                     }
                     else {
-                        const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "1h" });
+                        const token = jwt.sign({ email }, "goofygeeks", { expiresIn: "1h" });
                         connection.query(`SELECT * FROM admin WHERE aid = ${results[0].Uid}`, (er, result2) => {
                             if (er) throw er;
                             if (result2.length === 0) {

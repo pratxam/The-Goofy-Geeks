@@ -12,32 +12,68 @@
         <h1>ADD AN EVENT HERE</h1>
         <form >
       
-          <label for="fname">VENUE</label>
-          <input type="text" id="fname" name="firstname" >
+          <label for="fname">NAME</label>
+          <input type="text" id="name" name="name" required>
       
-          <label for="lname">DATE</label>
-          <input type="text" id="lname" name="lastname" >
+          <label for="date">DATE</label>
+          <input type="text" id="date" name="date" required>
           
-          <label for="lname">TIME</label>
-          <input type="text" id="lname" name="lastname" >
+          <!-- <label for="lname">TIME</label>
+          <input type="text" id="time" name="lastname" required> -->
 
-          <label for="lname">ORGANISERS</label>
-          <input type="text" id="lname" name="lastname" >
+          <label for="summary">SUMMARY</label>
+          <input type="text" id="summary" name="summary" required>
 
-          <label for="lname">REGISTRATION LINK</label>
-          <input type="text" id="lname" name="lastname" >
+          <label for="link">REGISTRATION LINK</label>
+          <input type="text" id="link" name="link" required>
 
-          <label for="lname">ADD IMAGE</label>
-          <input type="text" id="lname" name="lastname" >
+          <!-- <label for="lname">ADD IMAGE</label>
+          <input type="text" id="lname" name="lastname" > -->
       
-          
+          <label for="description">DESCRIPTION</label>
+          <textarea name="description" id="description" placeholder="Write description" style="height:200px"></textarea>
       
-          <label for="subject">DESCRIPTION</label>
-          <textarea id="subject" name="subject" placeholder="Write description" style="height:200px"></textarea>
-      
-          <input type="submit" value="Submit">
+          <input type="button" id="submit-btn" value="Submit" onclick="submitForm()">
       
         </form>
       </div>
+ <script> 
+        const Ename = document.getElementById("name")
+      
+        const date = document.getElementById("date")
+        const link = document.getElementById("link")
+        const summary = document.getElementById("summary")
+        const description = document.getElementById("description")
+        
+        const btn = document.getElementById("submit-btn")
+        const submitForm=()=>{
+          if (Ename.value.length===0||date.value.length===0||link.value.length===0||summary.value.length===0||description.value.length===0) {
+            alert("Please provide all values")
+          }
+          else{
+          let inputObj = {
+            name: Ename.value,
+            date: date.value,
+            description: description.value,
+            link: link.value,
+            summary: summary.value
+          }
+
+          fetch("http://localhost:5000/api/v1/event/createEvent",{
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(inputObj)
+          }).then(async(response)=>{
+            const data = await response.json();
+            console.log(data);
+          }).catch((error)=>{
+            console.log(error)
+          })
+        }
+        }
+
+      </script>
 </body>
 </html>

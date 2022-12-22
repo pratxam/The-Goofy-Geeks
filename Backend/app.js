@@ -1,7 +1,9 @@
 import express from 'express'
 const app = express();
-import dotenv from 'dotenv';
-dotenv.config();
+
+
+import cors from 'cors'
+app.use(cors());
 
 import mysql from 'mysql2'
 
@@ -13,7 +15,7 @@ import authRouter from './routes/authRoutes.js'
 import eventRouter from './routes/eventRoutes.js'
 
 
-const port = process.env.PORT || 5500
+const port = 5000;
 
 app.use(express.json());
 
@@ -25,7 +27,7 @@ app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
 app.listen(port,function(){
-    console.log('App is listening on port 5500');
+    console.log(`App is listening on port ${port} `);
     connection.connect(function(err){
         if(err) throw err;
         console.log("Connected");
