@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="adminEvent.css">
+</head>
+
+<body>
+    <div class="header">
+        Events
+    </div>
+    <hr>
+
+    <div class="club1">
+        <h1>Club-2(NAME)</h1>
+        <div class="eventsC-1">
+            <div class="card-container">
+                <div class="card">
+                    <!-- <div class="card-image card-image2"></div>
+                    <div class="card-title">Event 1</div>
+                    <div class="date">20 sep</div>
+                    <div class="card-text">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id repudiandae dolore veritatis nisi
+                        eos delectus
+                    </div>
+                    <button onclick="del()" type="button" class="btn btn-outline-warning">Delete</button> -->
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+
+        function run() {
+            let Utoken = localStorage.getItem("token")
+            fetch("http://localhost:5000/api/v1/event/getAllEvent", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${Utoken}`
+                }
+            }).then(async (response) => {
+                const data = await response.json();
+                let events = data.result2;
+                if(events.length === 0 ){
+                    let mainCard = document.querySelector('.card-container');
+
+                    let info = "<h2>No Events to display</h2>"
+                    mainCard.innerHTML = info
+
+                }
+                else{
+                    events.forEach(element => {
+                        let main = document.querySelector('.card-container');
+    
+                        let card = document.createElement("div");
+                        card.classList = "card"
+    
+                        let info = `
+                        <div class="card-image card-image2"></div>
+                        <div class="card-title">${element.Ename}</div>
+                        <div class="date">${element.Edate}</div>
+                        <div class="card-text">
+                            ${element.Edescription}
+                        </div>
+                        <button onclick="del(${element.Eid})" type="button" class="btn btn-outline-warning">Delete</button>          
+                        
+                        `
+                        card.innerHTML += info
+                        main.appendChild(card)
+    
+                    });
+
+                }
+            }).catch((error) => {
+                alert(error.message)
+            })
+        }
+        run();
+
+
+        function del(id) {
+            let Utoken = localStorage.getItem("token")
+            fetch(`http://localhost:5000/api/v1/event//deleteEvent/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${Utoken}`
+                }
+            }).then(async (response) => {
+                if (!response.ok) {
+                    const error = data;
+                    return Promise.reject(error);
+                }
+                const data = await response.json();
+                console.log(data);
+                window.location.reload()
+                
+            }).catch((error) => {
+                console.log(error)
+                alert(error.message)
+            })
+
+        }
+    </script>
+</body>
+
+</html>
