@@ -173,21 +173,6 @@ export const deleteUser = async (req, res, next) => {
     }
 }
 
-//GET ALL EVENTS
-export const getallEvents = async (req, res, next) => {
-
-    try {
-        connection.query("SELECT * FROM event WHERE", (err, result) => {
-            if (err) throw err;
-            res.status(200).json({
-                result
-            })
-        })
-
-    } catch (error) {
-        next(error)
-    }
-}
 
 
 
