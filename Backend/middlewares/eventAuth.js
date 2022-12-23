@@ -13,7 +13,7 @@ const eventAuth = async (req, res, next)=>{
         req.user = {userId: payload.email};
         next();
     } catch (error) {
-        return next(createCustomError("Authentication Invalid", 401)); 
+        return next(createCustomError(error.message, 401)); 
     }
 }
 
