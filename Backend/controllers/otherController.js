@@ -1,7 +1,7 @@
 import { createCustomError } from "../errors/customError.js";
 import connection from '../database.js';
 
-//GET ALL EVENTS
+//GET ALL EVENTS 
 export const getallEvents = async (req, res, next) => {
     console.log("get all events")
 

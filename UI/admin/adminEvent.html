@@ -11,13 +11,13 @@
 </head>
 
 <body>
-    <div class="header">
-        Events
+    <div class="header" id="heading">
+        
     </div>
     <hr>
 
     <div class="club1">
-        <h1>Club-2(NAME)</h1>
+        <h1>Events</h1>
         <div class="eventsC-1">
             <div class="card-container">
                 <div class="card">
@@ -37,7 +37,8 @@
     </div>
 
     <script>
-
+        let HEAD = document.getElementById("heading");
+        console.log(HEAD)
         function run() {
             let Utoken = localStorage.getItem("token")
             fetch("http://localhost:5000/api/v1/event/getAllEvent", {
@@ -49,6 +50,7 @@
             }).then(async (response) => {
                 const data = await response.json();
                 let events = data.result2;
+                HEAD.innerText = data.clubName
                 if(events.length === 0 ){
                     let mainCard = document.querySelector('.card-container');
 
@@ -68,7 +70,7 @@
                         <div class="card-title">${element.Ename}</div>
                         <div class="date">${element.Edate}</div>
                         <div class="card-text">
-                            ${element.Edescription}
+                            ${element.Esummary}
                         </div>
                         <button onclick="del(${element.Eid})" type="button" class="btn btn-outline-warning">Delete</button>          
                         
