@@ -6,8 +6,8 @@ import connection from '../database.js';
 
 //SIGNUP USER
 export const signUp = async (req, res, next) => {
-    
-    
+
+
     let flag = 0;
     try {
         const { email, password } = req.body;
@@ -16,6 +16,8 @@ export const signUp = async (req, res, next) => {
             return next(createCustomError("Please provide all values", 400));
         }
 
+        const salt = await bcrypt.genSalt(5);
+        const hashedPassword = await bcrypt.hash(password, salt)
 
         connection.query(`SELECT DISTINCT Uname FROM members WHERE Uname = "${email}" `, (err, results) => {
             if (err) throw err;
@@ -23,30 +25,23 @@ export const signUp = async (req, res, next) => {
                 flag = 1;
                 return next(createCustomError("Email already exists", 400));
             }
+            else {
+                connection.query(`INSERT INTO members ( Uname, Password) VALUES ("${email}", "${hashedPassword}")`,
+                    (err, results) => {
+                        if (err) throw err;
+                        const token = jwt.sign({ email }, "goofygeeks", { expiresIn: "1h" });
+
+                        res.status(201).json({
+                            user: {
+                                email: email,
+                            },
+                            token
+                        });
+                    });
+
+            }
 
         })
-
-
-        const salt = await bcrypt.genSalt(5);
-        const hashedPassword = await bcrypt.hash(password, salt)
-
-        if (flag === 0) {
-            connection.query(`INSERT INTO members ( Uname, Password) VALUES ("${email}", "${hashedPassword}")`,
-                (err, results) => {
-                    if (err) throw err;
-                    const token = jwt.sign({ email }, "goofygeeks", { expiresIn: "1h" });
-                    
-                    res.status(201).json({
-                        user: {
-                            email: email,
-                        },
-                        token
-                    });
-                });
-        } else {
-            flag = 0;
-        }
-
     } catch (error) {
         next(error);
     }
@@ -79,18 +74,18 @@ export const login = async (req, res, next) => {
                                 res.status(200).json({
                                     user: {
                                         email: email,
-                                        adminId : null,
-                                        clubId : null
+                                        adminId: null,
+                                        clubId: null
                                     },
                                     token
                                 });
                             }
-                            else{
+                            else {
                                 res.status(200).json({
                                     user: {
                                         email: email,
-                                        adminId : result2[0].aid,
-                                        clubId : result2[0].cid
+                                        adminId: result2[0].aid,
+                                        clubId: result2[0].cid
                                     },
                                     token
                                 });
@@ -112,27 +107,27 @@ export const login = async (req, res, next) => {
 export const updateUser = async (req, res, next) => {
     try {
         const { id: _id } = req.params;
-        const {  password } = req.body;
-        
+        const { password } = req.body;
+
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt)
-        
-        connection.query(`SELECT * FROM members WHERE Uid = ${_id} `, (err, results) => {
+
+        connection.query(`SELECT * FROM members WHERE Uname = "${_id}" `, (err, results) => {
             if (err) throw err;
             if (results.length === 0) {
                 return next(createCustomError("User does not exist", 400));
             }
             else {
-                connection.query(`UPDATE members SET Password = "${hashedPassword}" WHERE Uid=${_id}`, (err, result4) => {
+                connection.query(`UPDATE members SET Password = "${hashedPassword}" WHERE Uname="${_id}"`, (err, result4) => {
                     if (err) throw err;
                     res.status(200).json({
-                        
+                        msg: "Updated successfully",
                         Uid: _id
                     })
                 });
             }
         })
-        
+
     } catch (error) {
         next(error)
     }
@@ -146,13 +141,13 @@ export const deleteUser = async (req, res, next) => {
         if (!email || !password) {
             return next(createCustomError("Please provide all values", 400));
         }
-        
-        connection.query(`SELECT * FROM members WHERE Uid = ${_id} `, (err, results) => {
+
+        connection.query(`SELECT * FROM members WHERE Uname = "${_id}" `, (err, results) => {
             if (err) throw err;
             if (results.length === 0) {
                 return next(createCustomError("User does not exist", 400));
             }
-            
+
             else {
                 bcrypt.compare(password, results[0].Password, (err1, result) => {
                     if (err1) throw err1;
@@ -160,37 +155,39 @@ export const deleteUser = async (req, res, next) => {
                         return res.status(400).json({ msg: "Incorrect password" });
                     }
                     else {
-                        connection.query(`DELETE FROM members WHERE Uid="${email}"`, (err, result4) => {
+                        connection.query(`DELETE FROM members WHERE Uname="${email}"`, (err, result4) => {
                             if (err) throw err;
                             res.status(200).json({
                                 msg: "Deleted Successfully"
                             })
                         });
-                        
+
                     }
-                    
+
                 })
             }
         })
-        
+
     } catch (error) {
         next(error)
     }
 }
 
 //GET ALL EVENTS
-export const getallEvents = async(req, res, next)=>{
+export const getallEvents = async (req, res, next) => {
+
     try {
-        connection.query("SELECT * FROM event",(err, result)=>{
-            if(err) throw err;
+        connection.query("SELECT * FROM event WHERE", (err, result) => {
+            if (err) throw err;
             res.status(200).json({
                 result
             })
         })
-        
+
     } catch (error) {
         next(error)
     }
 }
 
-//GET ALL THE EVENTS WITHIN A WEEK
+
+

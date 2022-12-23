@@ -9,7 +9,7 @@ const eventAuth = async (req, res, next)=>{
     const token = authHeader.split(' ')[1];
     
     try {
-        const payload = jwt.verify(token, process.env.JWT_SECRET);
+        const payload = jwt.verify(token, "goofygeeks");
         req.user = {userId: payload.email};
         next();
     } catch (error) {

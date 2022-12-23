@@ -7,9 +7,9 @@ import connection from '../database.js';
 export const createEvent = async (req, res, next) => {
     try {
         let flag = 0;
-        const { date, name, description, summary, link } = req.body;
+        const { date, name, description, summary, link, venue, photo } = req.body;
         const { userId } = req.user
-        if (!date || !name || !description || !link || !summary) {
+        if (!date || !name || !description || !link || !summary || !venue || !photo) {
             return next(createCustomError("Please provide all values", 400));
         }
 
@@ -25,12 +25,14 @@ export const createEvent = async (req, res, next) => {
                         res.status(400).json({ msg: "Unauthorized user" });
                     }
                     else {
+
                         clubId = result3[0].cid;
-                        connection.query(`INSERT INTO event (Ename, Edate, Edescription, Esummary, Rlink, C_id) VALUES("${name}", "${date}", "${description}", "${summary}", "${link}" , ${clubId})`, (err, result) => {
+                        connection.query(`INSERT INTO event (Ename, Edate, Edescription, Esummary, Rlink, C_id, Ephoto, Evenue) VALUES("${name}", "${date}", "${description}", "${summary}", "${link}" , ${clubId}, "${photo}", "${venue}")`, (err, result) => {
                             if (err) throw err;
                             //// send event to front//
                             res.status(200).json({
                                 msg: "Events created successfully",
+                                eventId: result.insertId,
                                 name,
                                 date,
                                 description,
@@ -54,9 +56,9 @@ export const createEvent = async (req, res, next) => {
 export const editEvent = async (req, res, next) => {
     try {
         const { id: eventId } = req.params;
-        const { date, name, description, summary, link } = req.body;
+        const { date, name, description, summary, link, venue, photo } = req.body;
         const { userId } = req.user
-        if (!date || !name || !description || !link || !summary) {
+        if (!date || !name || !description || !link || !summary || !venue || !photo) {
             return next(createCustomError("Please provide all values", 400));
         }
 
@@ -72,22 +74,37 @@ export const editEvent = async (req, res, next) => {
                         res.status(400).json({ msg: "Unauthorized user" });
                     }
                     else {
-                        // clubId = result3[0].cid;
-                        connection.query(`UPDATE event SET Ename="${name}", Edate="${date}", Edescription="${description}", Esummary="${summary}", Rlink="${link}" WHERE Eid = ${eventId}`, (err, decoded) => {
-                            if (err) throw err;
-                            //// send event to front,///////////////////////////////////////////////////////
-                            res.status(200).json({
-                                msg: "Event Updated successfully",
-                            
-                            });
+                        let clubId = result3[0].cid;
+                        connection.query(`SELECT * FROM event WHERE Eid = "${eventId}"`, (error, result12) => {
+                            if (error) throw error
+                            if (result12.length === 0) {
+                                return res.status(404).json({ msg: "Event with this id does not exist" })
+                            }
+                            else{
+                            let dataEid = result12[0].C_id
+                            if (dataEid === clubId) {
+                                connection.query(`UPDATE event SET Ename="${name}", Edate="${date}", Edescription="${description}", Esummary="${summary}", Rlink="${link}", Ephoto="${photo}", Evenue="${venue}" WHERE Eid = ${eventId}`, (err, decoded) => {
+                                    if (err) throw err;
+                                    //// send event to front,///////////////////////////////////////////////////////
+                                    res.status(200).json({
+                                        msg: "Event Updated successfully",
+
+                                    });
+                                })
+                            }
+                            else {
+                                res.status(400).json({ msg: "Unauthorized user" });
+                            }
+                        }
                         })
-                        
+
+
                     }
 
                 })
             }
         })
-        
+
 
     } catch (error) {
 
@@ -109,27 +126,42 @@ export const deleteEvent = async (req, res, next) => {
                         res.status(400).json({ msg: "Unauthorized user" });
                     }
                     else {
-                        // clubId = result3[0].cid;
-                        connection.query(`DELETE FROM event WHERE Eid=${eventId}`, (err, result) => {
-                            if (err) throw err;
-                            res.status(200).json({
-                                msg: "Deleted Successfully"
-                            })
-                        });
-                        
-                    }
+                        let clubId = result3[0].cid;
 
-                })
+                        connection.query(`SELECT * FROM event WHERE Eid = "${eventId}"`, (error, result12) => {
+                            if (error) throw error
+                            if (result12.length === 0) {
+                                return res.status(404).json({ msg: "Event with this id does not exist" })
+                            }
+                            else{
+                                let dataEid = result12[0].C_id
+                            if (dataEid === clubId) {
+                                connection.query(`DELETE FROM event WHERE Eid=${eventId}`, (err4, result) => {
+                                    if (err4) throw err4;
+                                    res.status(200).json({
+                                        msg: "Deleted Successfully"
+                                    })
+                                });
+                            }
+                            else {
+                                res.status(400).json({ msg: "Unauthorized user" });
+                            }
+                        }
+                        })
+
             }
+
+        })
+    }
         })
     } catch (error) {
 
-    }
+}
 }
 
 
 //GET ALL EVENTS
-export const getAllEvent = async(req, res, next)=>{
+export const getAllEvent = async (req, res, next) => {
     try {
         const { userId } = req.user;
         connection.query(`SELECT Uid FROM members WHERE Uname = "${userId}"`, (err, results) => {
@@ -144,21 +176,22 @@ export const getAllEvent = async(req, res, next)=>{
                     }
                     else {
                         let clubId = result1[0].cid;
-                       connection.query(`SELECT * FROM event WHERE C_id=${clubId}`, (err2, result2)=>{
-                        if(err2) throw err2;
-                        if(result2.length ===0){
-                            res.status(200).json({
-                                msg:"No Events to display",
-                                result2
-                            })
-                        }
-                        else{
-                            res.status(200).json({
-                                result2
-                            })
-                        }
-                       })
-                        
+                        connection.query(`SELECT * FROM event WHERE C_id=${clubId}`, (err2, result2) => {
+                            if (err2) throw err2;
+                            if (result2.length === 0) {
+                                res.status(200).json({
+                                    msg: "No Events to display",
+                                    result2
+                                })
+                            }
+                            else {
+                                res.status(200).json({
+                                    numOfEvents: result2.length,
+                                    result2
+                                })
+                            }
+                        })
+
                     }
 
                 })
@@ -166,5 +199,28 @@ export const getAllEvent = async(req, res, next)=>{
         })
     } catch (error) {
         next(error);
+    }
+}
+
+//GET One event
+export const getOneEvent = async (req, res, next) => {
+    const { id: eventId } = req.params;
+    try {
+        connection.query(`SELECT * FROM event Where Eid ="${eventId}" `, (err, result) => {
+            if (err) throw err;
+            if(result.length ===0){
+                return res.status(404).json({msg: "Event does not exist"});
+            }
+            else{
+                let data = result[0];
+                res.status(200).json({
+                    data
+                })
+
+            }
+        })
+
+    } catch (error) {
+        next(error)
     }
 }

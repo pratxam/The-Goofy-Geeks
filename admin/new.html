@@ -18,8 +18,8 @@
           <label for="date">DATE</label>
           <input type="text" id="date" name="date" required>
           
-          <!-- <label for="lname">TIME</label>
-          <input type="text" id="time" name="lastname" required> -->
+          <label for="venue">VENUE</label>
+          <input type="text" id="venue" name="venue" required>
 
           <label for="summary">SUMMARY</label>
           <input type="text" id="summary" name="summary" required>
@@ -27,8 +27,8 @@
           <label for="link">REGISTRATION LINK</label>
           <input type="text" id="link" name="link" required>
 
-          <!-- <label for="lname">ADD IMAGE</label>
-          <input type="text" id="lname" name="lastname" > -->
+          <label for="photo">ADD IMAGE</label>
+          <input type="text" id="photo" name="photo" >
       
           <label for="description">DESCRIPTION</label>
           <textarea name="description" id="description" placeholder="Write description" style="height:200px"></textarea>
@@ -39,7 +39,8 @@
       </div>
  <script> 
         const Ename = document.getElementById("name")
-      
+        const Evenue = document.getElementById("venue")
+        const Ephoto = document.getElementById("photo")
         const date = document.getElementById("date")
         const link = document.getElementById("link")
         const summary = document.getElementById("summary")
@@ -47,7 +48,7 @@
         
         const btn = document.getElementById("submit-btn")
         const submitForm=()=>{
-          if (Ename.value.length===0||date.value.length===0||link.value.length===0||summary.value.length===0||description.value.length===0) {
+          if (Ename.value.length===0||date.value.length===0||link.value.length===0||summary.value.length===0||description.value.length===0|| Evenue.value.length===0 || Ephoto.value.length===0) {
             alert("Please provide all values")
           }
           else{
@@ -56,13 +57,18 @@
             date: date.value,
             description: description.value,
             link: link.value,
-            summary: summary.value
+            summary: summary.value,
+            venue: Evenue.value,
+            photo: Ephoto.value
+
           }
+          let Utoken = localStorage.getItem("token") 
 
           fetch("http://localhost:5000/api/v1/event/createEvent",{
             method: 'POST',
             headers: { 
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${Utoken}`
             },
             body: JSON.stringify(inputObj)
           }).then(async(response)=>{
