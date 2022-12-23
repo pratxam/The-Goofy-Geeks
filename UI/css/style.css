@@ -1,0 +1,42 @@
+body{
+margin:0;
+padding:0;
+font-family: sans-serif;
+background-image: url(login.jpg);
+background-size: cover;
+
+}
+.sign-up-form
+{
+    width: 300px;
+    box-shadow: 0 0 3px 0 rgba(0, 0,0, 0.3);
+    background: rgb(249, 245, 249);
+    padding:20px;
+    margin:8% auto 0;
+    text-align:left ;
+}
+.sign-up-form{
+color: #101112;
+margin-bottom:30 px ;
+}
+.input-box
+{
+border-color: rgb(249, 249, 249);
+    
+    border-radius: 5px;
+}
+button{
+    color:rgb(32, 25, 25);
+    font-size: 15px;
+font-style: normal;
+cursor: pointer;
+border-radius: 5px;
+border-color: #fff;
+}
+.sign in{
+ font-style:italic ;
+}
+.h1{
+    font-weight: 5px;
+    font-display: fallback;
+}
