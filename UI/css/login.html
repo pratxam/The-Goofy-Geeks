@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="sign-up-form">
-<h1>Sign up now</h1>
+<h1>Log In</h1>
 <form >
     <h4>Enter email</h4>
     <input type="email" name="email" id="email" class="input-box" placeholder="your email">
@@ -19,7 +19,7 @@
     <br>
     <button type="button" id='signup-btn'  class="signup-btn" onclick="submitForm()">Sign up</button>
     <br> 
-    <p class="sign in">do you have an account? <a href="./login.html">Log in</a></p>
+    <p class="sign in">Don't have an account? <a href="./newsign.html">Sign Up</a></p>
 </form>
 
 <script> 
@@ -37,7 +37,7 @@
        
       }
 
-      fetch("http://localhost:5000/api/v1/auth/signUp",{
+      fetch("http://localhost:5000/api/v1/auth/login",{
         method: 'POST',
         headers: { 
             'Content-Type': 'application/json'
@@ -53,7 +53,14 @@
             const {user, token} = data;
             localStorage.setItem("user", JSON.stringify(user));
             localStorage.setItem("token", token);
-            window.location.replace("../all/proj.html")
+            let admin = user.adminId;
+            if(admin === null){
+                window.location.replace("../all/proj.html")
+            }
+            else{
+                window.location.replace("../all/adminHome.html")
+
+            }
         }
       }).catch((error)=>{
         console.log(error)

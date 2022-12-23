@@ -72,8 +72,13 @@
             },
             body: JSON.stringify(inputObj)
           }).then(async(response)=>{
+            if(!response.ok){
+            const error = data;
+                return Promise.reject(error);
+        }
             const data = await response.json();
             console.log(data);
+            window.location.replace("./adminEvent.html")
           }).catch((error)=>{
             console.log(error)
           })
