@@ -2,31 +2,14 @@
 @media print {
     body {-webkit-print-color-adjust: exact;}
 }
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.header{
-    text-align: center;
-    font-size: 50px;
-    font-weight: 900;
-    font-style:cursive;
-}
-body{
-    background:white fixed;
-    padding:50px;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 400;
-}
 
 .card-container{
-    display:inline;    
-    justify-content: center;
+    display: flex;
+    justify-content: left;
     align-items: center;
     gap: 15px;
     flex-wrap: wrap;
+    margin:30px 20px 30px 20px;
 }
 
 .card{
@@ -41,6 +24,7 @@ body{
     border-radius: 4px;
     padding: 20px;
     transition: all .3s ease-in;
+
 }
 .card > *{
     padding: 10px;
