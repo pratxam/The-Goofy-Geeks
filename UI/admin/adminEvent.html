@@ -19,8 +19,8 @@
     <div class="club1">
         <h1>Events</h1>
         <div class="eventsC-1">
-            <div class="card-container">
-                <div class="card">
+            <div class="card-container" >
+                <!-- <div class="card"> -->
                     <!-- <div class="card-image card-image2"></div>
                     <div class="card-title">Event 1</div>
                     <div class="date">20 sep</div>
@@ -29,7 +29,7 @@
                         eos delectus
                     </div>
                     <button onclick="del()" type="button" class="btn btn-outline-warning">Delete</button> -->
-                </div>
+                <!-- </div> -->
 
             </div>
 
@@ -64,14 +64,16 @@
     
                         let card = document.createElement("div");
                         card.classList = "card"
+                        
+                        // card.setAttribute("style","overflow: auto;")
     
                         let info = `
                         <div class="card-image card-image2"></div>
                         <div class="card-title">${element.Ename}</div>
                         <div class="date">${element.Edate}</div>
-                        <div class="card-text">
+                        <p class="card-text" style="word-wrap: break-word; max-width:240px;">
                             ${element.Esummary}
-                        </div>
+                        </p>
                         <button onclick="del(${element.Eid})" type="button" class="btn btn-outline-warning">Delete</button>          
                         
                         `
