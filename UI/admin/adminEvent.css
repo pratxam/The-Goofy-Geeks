@@ -21,7 +21,7 @@ body{
     font-weight: 400;
 }
 #btn{
-    ddisplay: inline-block;
+    display: inline-block;
     position: absolute;
     right: 30px;
     top: 15px;
