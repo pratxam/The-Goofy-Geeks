@@ -23,7 +23,7 @@
     display: inline;
     position: relative;
     left: 82%;
-    top: 20px;
+    top: 2px;
     padding: 10px;
     width: 100px;
     font-size: 20px;
@@ -39,7 +39,7 @@
     gap: 20px;
 
 }
-.btn
+.btn_abcd
 {
     display: inline-block;
     position: relative;
@@ -54,7 +54,7 @@
     /* border: 2px solid #3eff37; */
     background: transparent;
     /* background-color: rgb(111, 174, 111); */
-    color: #fff;
+    color: rgb(126, 36, 36);
     cursor: pointer;
     overflow: hidden;
     border-radius: 10px;
