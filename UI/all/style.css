@@ -22,8 +22,7 @@
     margin: 15px;
     display: inline;
     position: relative;
-    left: 82%;
-    top: 2px;
+    left: 50px;
     padding: 10px;
     width: 100px;
     font-size: 20px;
@@ -37,15 +36,14 @@
     overflow: hidden;
     border-radius: 10px;
     gap: 20px;
-
+    border: solid;
 }
 .btn_abcd
 {
     display: inline-block;
     position: relative;
-    left: 847px;
+    left: 50px;
     right: 0px;
-    top: 20px;
     padding: 8px;
     width: 80px;
     font-size: 20px;
@@ -222,3 +220,48 @@ nav{
     top:220px;
 
 }
+label {
+    padding: 4px 20px;
+    line-height: 190%;
+    outline-style: none;
+    transition: all .6s;
+    margin: 20px;
+  }
+.chb {
+    padding: 4px 20px;
+    line-height: 190%;
+    outline-style: none;
+    transition: all .6s;
+    margin: 20px;
+    border: solid 1px;
+  }
+  
+  .hiddenCB div {
+    display: inline;
+    margin: 0px;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .hiddenCB input[type="checkbox"],
+  .hiddenCB input[type="radio"] {
+    display: none;
+    
+  }
+  
+  .hiddenCB label {
+    
+    cursor: pointer;
+  }
+  
+  .hiddenCB input[type="checkbox"]+label:hover{
+    background: rgba(0, 128, 128, .8);
+  }
+  
+  .hiddenCB input[type="checkbox"]:checked+label {
+    background: rgba(0, 128, 128, .4);
+  }
+  
+  .hiddenCB input[type="checkbox"]:checked+label:hover{
+    background: rgba(0, 128, 128, 0, .7);
+  }

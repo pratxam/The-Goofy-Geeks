@@ -1,6 +1,6 @@
 // UTILITY FUNCTION TO LOAD EVENT CARDS
 function setCards(data) {
-    console.log(data);
+    //console.log(data);
     const result = data.result;
     var i=0;
     htmlString="";
@@ -13,13 +13,13 @@ function setCards(data) {
     }
     else {
         while(i<result.length){
-            console.log(typeof(result[i]));
+            //console.log(typeof(result[i]));
             htmlString=htmlString+"<div class=\"card-container\">"
             for(var j=0; j<5&&i<result.length; j++,++i){
                 const a = result[i];
-                console.log(a);
+                //console.log(a);
                 var ename=a['Ename'];
-                console.log(ename);
+                //console.log(ename);
                 var edate=a['Edate'];
                 var esumm=a['Esummary'];
                 var cname=a['Cname'];
@@ -34,8 +34,8 @@ function setCards(data) {
         }
     }
     document.getElementById("cards").innerHTML = htmlString;
-    console.log(htmlString);
-    console.log(document.getElementById("cards"));
+    //console.log(htmlString);
+    //console.log(document.getElementById("cards"));
 }
 
 // GET ALL EVENTS ON LOAD
@@ -53,7 +53,10 @@ document.getElementById("sort").addEventListener("change",(e) => {
     console.log(e.target.value);
 fetch('http://localhost:5000/api/v1/getAllEvents/'+e.target.value,{method: 'GET'})
 .then((data) => (data.json())).then((data) => (setCards(data)))});
-
+//FILTER
+document.getElementById("myBtn").addEventListener("click",(e) => {
+fetch('http://localhost:5000/api/v1/getAllClubs/',{method: 'GET'})
+.then((data) => (data.json())).then((data) => (setCheckbox(data)))});
 // FILTER modal
 var modal = document.getElementById("myModal");
 
@@ -79,3 +82,4 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
