@@ -3,10 +3,16 @@ import connection from '../database.js';
 
 //GET ALL CLUBS
 export const getAllClubs = async (req, res, next) => {
-    connection.query("select * from club", (err, result) => {
-        if (err) throw new Error(err);
-        res.send(result);
-    });
+    try{
+        connection.query("select * from club", (err, result) => {
+            if (err) throw new Error(err);
+            res.status(200).json({
+                result
+            })
+        });
+    } catch(error){
+        next(error)
+    }
 }
 
 //GET ALL EVENTS
@@ -124,4 +130,29 @@ export const getallEventsByPopularity = async (req, res, next) => {
     } catch (error) {
         next(error)
     }
+}
+
+export const getEventsByClubs = async (req, res, next) => {
+    try {
+        var clubIdMap = new Map();
+        connection.query("select * from club", (err, result) => {
+            if (err) throw new Error(err);
+                result.forEach(function (element) {
+                clubIdMap.set(element.Cid, element.Cname);
+            });
+        });
+        const { filter_param: filter_param } = req.params;
+        connection.query("SELECT * FROM event where C_id in ("+filter_param+")", (err, result) => {
+            if (err) throw err;
+            result.forEach(function (element) {
+                element.Cname = clubIdMap.get(element.C_id);
+            });
+            res.status(200).json({
+                result
+            })
+        })
+    } catch (error) {
+        next(error)
+    }
+    
 }

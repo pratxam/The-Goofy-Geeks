@@ -24,7 +24,7 @@
     border-radius: 4px;
     padding: 20px;
     transition: all .3s ease-in;
-
+    margin: 5px;
 }
 .card > *{
     padding: 10px;

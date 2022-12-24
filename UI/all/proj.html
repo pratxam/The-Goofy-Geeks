@@ -93,14 +93,16 @@
     <!-- NEW SECTION -->
     <section id="utility">
       <div class="sort">
-        <label for="sort">Sort by</label>
+        <label for="sort" class="chb">Sort by</label>
         <select id="sort" name="sort">
           <option value="">--</option>
           <option value="date">Date</option>
           <option value="popularity">Popularity</option>
         </select>
       </div>
+        
         <input class="btn_abcd btn-outline-danger" type="button" id="myBtn" value="Filter">
+        
       
   
       <!-- The Modal -->
@@ -111,24 +113,20 @@
             <div class="hiddenCB">
               <h3>Select Clubs</h3>
               <hr>
-              <div>
-                <input type="checkbox" name="choice" id="cb1" /><label class="chb" for="cb1">FLC</label>
-                <input type="checkbox" name="choice" id="cb2" /><label class="chb" for="cb2">Choice B</label>
-                <input type="checkbox" name="choice" id="cb3" /><label class="chb" for="cb3">Choice C</label>
-                <input type="checkbox" name="choice" id="cb4" /><label class="chb" for="cb4">Choice D</label>
-            
+              <div id="allcheckbox">
+                
               </div>
             </div>
             <br><br>
-            <input type="button" value="Submit">
+            <input type="button" value="Submit" id="filterSubmit">
           </div>
         </div> 
       </div>
     </section>
 
-    <section id="cards">
+    <div id="cards" style="height:auto">
       
-    </section>
+    </div>
     <script src="proj.js">
       
     </script>

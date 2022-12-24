@@ -220,23 +220,16 @@ nav{
     top:220px;
 
 }
+
 label {
-    padding: 4px 20px;
+    padding: 4px 6px;
     line-height: 190%;
     outline-style: none;
     transition: all .6s;
-    margin: 20px;
+    margin: 25px
   }
-.chb {
-    padding: 4px 20px;
-    line-height: 190%;
-    outline-style: none;
-    transition: all .6s;
-    margin: 20px;
-    border: solid 1px;
-  }
-  
-  .hiddenCB div {
+ 
+.hiddenCB div {
     display: inline;
     margin: 0px;
     padding: 0;
@@ -250,7 +243,7 @@ label {
   }
   
   .hiddenCB label {
-    
+    margin: 5px 5px;
     cursor: pointer;
   }
   
