@@ -1,6 +1,6 @@
 // UTILITY FUNCTION TO LOAD EVENT CARDS
 function setCards(data) {
-    console.log(data.result);
+    console.log(data);
     const result = data.result;
     var i=0;
     htmlString="";
@@ -47,6 +47,12 @@ document.getElementById("start-input-search").addEventListener("search", (e) => 
     fetch('http://localhost:5000/api/v1/search/'+e.target.value,{method: 'GET'})
     .then((data) => (data.json())).then((data) => (setCards(data)));
 })
+
+//SORT
+document.getElementById("sort").addEventListener("change",(e) => {
+    console.log(e.target.value);
+fetch('http://localhost:5000/api/v1/getAllEvents/'+e.target.value,{method: 'GET'})
+.then((data) => (data.json())).then((data) => (setCards(data)))});
 
 // FILTER modal
 var modal = document.getElementById("myModal");
