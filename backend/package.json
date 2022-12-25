@@ -1,0 +1,15 @@
+{
+  "name": "geeks",
+  "version": "1.0.0",
+  "description": "backend stuff",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "the_geeks",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
+  }
+}
