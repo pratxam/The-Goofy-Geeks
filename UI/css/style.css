@@ -1,29 +1,33 @@
 body{
 margin:0;
 padding:0;
-font-family: sans-serif;
-background-image: url(login.jpg);
+font-family: 'Rubik Vinyl', cursive;
+background-image:  url(6.jpeg);
 background-size: cover;
+
 
 }
 .sign-up-form
 {
-    width: 300px;
-    box-shadow: 0 0 3px 0 rgba(0, 0,0, 0.3);
-    background: rgb(249, 245, 249);
+    width: 500px;
+    /* box-shadow: 0 0 3px 0 rgba(0, 0,0, 0.3); */
+    background: rgb(116 247 251);
     padding:20px;
     margin:8% auto 0;
-    text-align:left ;
+    text-align:center ;
+    border: 30px solid #f9dc32;
+    border-radius: 20px;
 }
 .sign-up-form{
-color: #101112;
+color: #0f0f0f;
 margin-bottom:30 px ;
 }
 .input-box
 {
-border-color: rgb(249, 249, 249);
-    
-    border-radius: 5px;
+border-color: rgb(244, 241, 241);
+    width: 300px;
+    height: 30px;
+    border-radius: 10px;
 }
 button{
     color:rgb(32, 25, 25);
@@ -31,7 +35,7 @@ button{
 font-style: normal;
 cursor: pointer;
 border-radius: 5px;
-border-color: #fff;
+border-color: rgb(15, 14, 14);
 }
 .sign in{
  font-style:italic ;
