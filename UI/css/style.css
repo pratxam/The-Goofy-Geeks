@@ -2,20 +2,25 @@ body{
 margin:0;
 padding:0;
 font-family: 'Rubik Vinyl', cursive;
-background-image:  url(6.jpeg);
+background-image: url(7.jpeg);
+/* background-color: #0f0f0f; */
 background-size: cover;
 
 
+
 }
+/* form h4{
+    text-align: left;
+} */
 .sign-up-form
 {
     width: 500px;
     /* box-shadow: 0 0 3px 0 rgba(0, 0,0, 0.3); */
-    background: rgb(116 247 251);
+    background: rgb(232, 228, 228);
     padding:20px;
     margin:8% auto 0;
     text-align:center ;
-    border: 30px solid #f9dc32;
+    border: 20px solid black;
     border-radius: 20px;
 }
 .sign-up-form{
@@ -24,18 +29,21 @@ margin-bottom:30 px ;
 }
 .input-box
 {
-border-color: rgb(244, 241, 241);
+    border-color: black;
     width: 300px;
     height: 30px;
     border-radius: 10px;
 }
 button{
     color:rgb(32, 25, 25);
+    background-color: green;
     font-size: 15px;
-font-style: normal;
-cursor: pointer;
-border-radius: 5px;
-border-color: rgb(15, 14, 14);
+    width: 300px;
+    height: 30px;
+    font-style: normal;
+    cursor: pointer;
+    border-radius: 5px;
+    border-color: rgb(15, 14, 14);
 }
 .sign in{
  font-style:italic ;
