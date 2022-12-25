@@ -110,7 +110,12 @@ nav{
     justify-content: space-between;
     align-items: center;
     mix-blend-mode: multiply;
+    position: sticky;
+    top: 0;
     
+}
+nav img{
+    height: 100px;
 }
 .navbar-nav{
     flex: 1;
@@ -122,6 +127,7 @@ nav{
     display: inline-block;
     position: relative;
     padding: 0px 30px;
+    /* left: 600px; */
     
   
 }
@@ -131,6 +137,8 @@ nav{
     font-size: 22px;
     font-family:'Times New Roman', Times, serif;
     font-weight: 600;
+
+
 }
 #navbarNavDropdown ul li::after{
     content: '';
@@ -142,8 +150,8 @@ nav{
     transition: 0.3s;
 }
 #navbarNavDropdown{
-    flex: 1;
-    text-align: right;
+    /* flex: 1; */
+    text-align: center;
 }
 #navbarNavDropdown ul li:hover::after{
     width: 100%;
@@ -168,7 +176,7 @@ nav{
     font-size: 20px;
 }
 .collapse{
-    margin-left: 150px; 
+    margin-left: 750px; 
 }
 .nav-item:hover{
     /* background-color: rgb(172, 172, 248);  */
