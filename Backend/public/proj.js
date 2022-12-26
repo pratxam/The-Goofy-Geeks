@@ -21,7 +21,7 @@ function setCards(data) {
                 var cname=a['Cname'];
                 htmlString=htmlString+"<div class=\"card\">\
                 <div class=\"card-title\">"+ename+"</div>\
-                <div class=\"card-text\">"+cname+"</div>\
+                <a href=\"http://localhost:5000/clubs/"+a['C_id']+"\" type=\"button\" class=\"btn\">"+cname+"</a>\
                 <div class=\"card-text\">"+esumm+"</div>\
                 <div class=\"card-text\"> Date: "+edate+"</div>\
                 <button href=\"#\" onclick=\"toggle()\" type=\"button\" class=\"btn btn-outline-warning\">Know More</button>\

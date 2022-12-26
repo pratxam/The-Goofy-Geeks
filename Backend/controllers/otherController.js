@@ -15,6 +15,21 @@ export const getAllClubs = async (req, res, next) => {
     }
 }
 
+// GET CLUB BY ID
+export const getClub = async (req, res, next) => {
+    try{
+        const { id: id } = req.params;
+        connection.query("select * from club where Cid="+id, (err, result) => {
+            if (err) throw new Error(err);
+            res.status(200).json({
+                result
+            })
+        });
+    } catch(error){
+        next(error)
+    }
+}
+
 //GET ALL EVENTS
 export const getallEvents = async (req, res, next) => {
     console.log("get all events")
