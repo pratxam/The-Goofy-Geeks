@@ -31,6 +31,11 @@ app.get('/clubs/:id',(req,res)=>{
 
 })
 
+app.get('/register/:id',(req,res)=>{
+    res.render('register',{})
+
+})
+
 
 app.use('/api/v1/auth',authRouter );
 app.use('/api/v1/event',eventAuth, eventRouter );

@@ -84,6 +84,7 @@ export const searchEvents = async (req, res, next) => {
         next(error)
     }
 }
+
 export const getallEventsByDate = async (req, res, next) => {
     console.log("get all events")
 
@@ -169,5 +170,32 @@ export const getEventsByClubs = async (req, res, next) => {
     } catch (error) {
         next(error)
     }
-    
+}
+
+// GET EVENT
+export const getEvent = async (req, res, next) => {
+    console.log("get event")
+
+    try {
+        var clubIdMap = new Map();
+        connection.query("select * from club", (err, result) => {
+            if (err) throw new Error(err);
+                result.forEach(function (element) {
+                clubIdMap.set(element.Cid, element.Cname);
+            });
+        });
+        const { id : id } = req.params;
+        connection.query("SELECT * FROM event where Eid="+id, (err, result) => {
+            if (err) throw err;
+            result.forEach(function (element) {
+                element.Cname = clubIdMap.get(element.C_id);
+            });
+            res.status(200).json({
+                result
+            })
+        })
+
+    } catch (error) {
+        next(error)
+    }
 }

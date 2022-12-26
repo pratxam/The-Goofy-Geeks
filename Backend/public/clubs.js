@@ -1,7 +1,5 @@
-console.log(window.location.href)
-var eventId = new URL(window.location.href).pathname.split('/')[2];  
-console.log(eventId);
-fetch('http://localhost:5000/api/v1/getClub/'+eventId,{method: 'GET'})
+var clubId = new URL(window.location.href).pathname.split('/')[2];  
+fetch('http://localhost:5000/api/v1/getClub/'+clubId,{method: 'GET'})
 .then((data) => (data.json())).then((data) => {
     result=data.result[0];
     console.log(result);

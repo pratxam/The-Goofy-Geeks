@@ -24,7 +24,7 @@ function setCards(data) {
                 <a href=\"http://localhost:5000/clubs/"+a['C_id']+"\" type=\"button\" class=\"btn\">"+cname+"</a>\
                 <div class=\"card-text\">"+esumm+"</div>\
                 <div class=\"card-text\"> Date: "+edate+"</div>\
-                <button href=\"#\" onclick=\"toggle()\" type=\"button\" class=\"btn btn-outline-warning\">Know More</button>\
+                <a href=\"http://localhost:5000/register/"+a['Eid']+"\" type=\"button\" class=\"btn btn-outline-warning\">Know More</a>\
                 </div>"
             }
         }

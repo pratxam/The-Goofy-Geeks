@@ -1,5 +1,5 @@
 import express from 'express'
-import { getallEvents, searchEvents,getallEventsByDate,getallEventsByPopularity,getAllClubs,getEventsByClubs, getClub} from '../controllers/otherController.js';
+import { getallEvents, searchEvents,getallEventsByDate,getallEventsByPopularity,getAllClubs,getEventsByClubs, getClub, getEvent} from '../controllers/otherController.js';
 const router = express.Router();
 
 router.route("/getAllEvents").get(getallEvents);
@@ -11,4 +11,5 @@ router.route("/getAllClubs/").get(getAllClubs);
 router.route("/getEventsByCLubs/:filter_param").get(getEventsByClubs);
 router.route("/getEventsByCLubs/").get(getallEvents);
 router.route("/getClub/:id").get(getClub);
+router.route("/register/:id").get(getEvent);
 export default router
