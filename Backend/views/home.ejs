@@ -32,9 +32,26 @@
                   <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav me-auto">
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">HOME</a>
+                        <a class="nav-link active" aria-current="page" href="/">HOME</a>
                       </li>
-                      <li class="nav-item" >
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">REGISTRATIONS</a>
+                      </li>
+                      <% if (adminId) { %>
+                        <li class="nav-item dropdown" >
+                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            MORE
+                          </a>
+                          <ul class="dropdown-menu" >
+                            <li><a class="dropdown-item" href="../admin/new.html">Create</a></li>
+                            <li><a class="dropdown-item" href="../admin/adminEvent.html">Delete</a></li>
+                          </ul>
+                        </li>
+                      <% } %>
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">LOGOUT</a>
+                      </li>
+                      <!-- <li class="nav-item" >
                         <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CLUBS</a>
 
                         <ul class="dropdown-menu">
@@ -48,13 +65,13 @@
                       <li class="nav-item dropdown" >
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           REGISTRATION
-                        </a>
+                        </a> -->
                         <!-- <ul class="dropdown-menu" > -->
                           <!-- <li><a class="dropdown-item" href="#">dark</a></li>
                           <li><a class="dropdown-item" href="#">action</a></li>
                           <li><a class="dropdown-item" href="#">Something </a></li> -->
-                        </ul>
-                      </li>
+                        <!-- </ul>
+                      </li> -->
                     </ul>
                   </div>
                 </div>
@@ -70,7 +87,7 @@
         </nav> 
         <div class="text">
             <h1>ARE YOU MISSING OUT ON EVENTS?</h1>
-            <p>An all in one website where students are updated on any event details happening in our college.</p>
+            <p>This is an all in one website where you can stay updated on any event happening in our college.</p>
         <div class="evn">
           <!-- <h2>UPCOMING EVENTS THIS WEEK..</h2> -->
           <hr>
@@ -127,7 +144,7 @@
     <div id="cards" style="height:auto">
       
     </div>
-    <script src="/proj.js">
+    <script src="/home.js">
       
     </script>
 </body>

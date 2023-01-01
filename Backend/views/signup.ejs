@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="sign-up-form">
+<h1>Sign up now</h1>
+<form >
+    <h4>Enter email</h4>
+    <input type="email" name="email" id="email" class="input-box" placeholder="email">
+    <h4>Enter password</h4>
+    <input name="password" type="password" id="password" class="input-box" placeholder="password">
+    <br>
+    <br>
+    <button type="button" id='signup-btn'  class="signup-btn" onclick="submitForm()">Sign up</button>
+    <br> 
+    <p class="sign in">do you have an account? <a href="./login">Log in</a></p>
+</form>
+
+<script> 
+    const Uemail = document.getElementById("email")
+    const Upassword = document.getElementById("password")
+    
+    const submitForm=()=>{
+      if (Uemail.value.length===0||Upassword.value.length===0) {
+        alert("Please provide all values")
+      }
+      else{
+      let inputObj = {
+        password: Upassword.value,
+        email: Uemail.value,
+       
+      }
+
+      fetch("http://localhost:5000/api/v1/auth/signUp",{
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(inputObj)
+      }).then(async(response)=>{
+        const data = await response.json();
+        if(!response.ok){
+            alert(data['msg']);
+            const error = data;
+                return Promise.reject(error);
+        }
+        else{
+            <!-- const {user, token} = data;
+            localStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("token", token); -->
+            window.location.replace("/login")
+        }
+      }).catch((error)=>{
+        console.log(error)
+      })
+    }
+    }
+
+  </script>
+</body>

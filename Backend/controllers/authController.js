@@ -29,14 +29,7 @@ export const signUp = async (req, res, next) => {
                 connection.query(`INSERT INTO members ( Uname, Password) VALUES ("${email}", "${hashedPassword}")`,
                     (err, results) => {
                         if (err) throw err;
-                        const token = jwt.sign({ email }, "goofygeeks", { expiresIn: "1h" });
-
-                        res.status(201).json({
-                            user: {
-                                email: email,
-                            },
-                            token
-                        });
+                        res.status(201);
                     });
 
             }
@@ -50,8 +43,9 @@ export const signUp = async (req, res, next) => {
 //LOGIN USER
 export const login = async (req, res, next) => {
     try {
+        console.log("hello");
         const { email, password } = req.body;
-
+        
         if (!email || !password) {
             return next(createCustomError("Please provide all values", 400));
         }
@@ -67,28 +61,22 @@ export const login = async (req, res, next) => {
                         return res.status(400).json({ msg: "Incorrect password" });
                     }
                     else {
-                        const token = jwt.sign({ email }, "goofygeeks", { expiresIn: "1h" });
-                        connection.query(`SELECT * FROM admin WHERE aid = ${results[0].Uid}`, (er, result2) => {
+                        const userId = results[0].Uid
+                        const token = jwt.sign({ userId }, "goofygeeks", { expiresIn: "1h" });
+                        console.log(token);
+                        connection.query(`SELECT * FROM admin WHERE aid = ${userId}`, (er, result2) => {
                             if (er) throw er;
                             if (result2.length === 0) {
-                                res.status(200).json({
-                                    user: {
-                                        email: email,
-                                        adminId: null,
-                                        clubId: null
-                                    },
-                                    token
-                                });
+                                res.cookie('userId',userId,{path:'/', maxAge:1000*60*60*24})
+                                res.cookie('adminId','',{path:'/', maxAge:1000*60*60*24})
+                                res.cookie('token',token,{path:'/', maxAge:1000*60*60*24})
+                                res.status(200).json({})
                             }
                             else {
-                                res.status(200).json({
-                                    user: {
-                                        email: email,
-                                        adminId: result2[0].aid,
-                                        clubId: result2[0].cid
-                                    },
-                                    token
-                                });
+                                res.cookie('userId',results[0].Uid,{path:'/'})
+                                res.cookie('adminId',result2[0].aid,{path:'/'})
+                                res.cookie('token',token,{path:'/'})
+                                res.status(200).json({})
                             }
                         })
                     }

@@ -96,7 +96,7 @@
 
         function del(id) {
             let Utoken = localStorage.getItem("token")
-            fetch(`http://localhost:5000/api/v1/event//deleteEvent/${id}`, {
+            fetch(`http://localhost:5000/api/v1/event/deleteEvent/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

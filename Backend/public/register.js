@@ -11,7 +11,7 @@ fetch('http://localhost:5000/api/v1/register/'+eventId,{method: 'GET'})
         <a href="+result['Rlink']+">"+result['Rlink']+"</a>\
         <br><br><label style=\"font-weight:100\"><input type=\"checkbox\" name=\"css\" value=\"css\"> Check this box to track your registration for this event. You can view all your event registrations in the Registrations tab in the home page. </label>"
         document.getElementById("eventInfo").innerHTML=htmlString
-        htmlString1="<img src="+result['Ephoto']+"width=\"450\" height=\"450\">"
+        htmlString1="<img src="+result['Ephoto']+" style=\"width:450px; height:450px;\">"
         document.getElementById("image").innerHTML=htmlString1;
     }
 )

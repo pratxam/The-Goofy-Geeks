@@ -1,5 +1,6 @@
 import express from 'express'
 import path from 'path';
+import cookieparser from 'cookie-parser'
 const __dirname = path.resolve();
 const app = express();
 
@@ -11,19 +12,34 @@ import mysql from 'mysql2'
 
 import connection from './database.js';
 import errorHandlerMiddleware from './middlewares/errorHandler.js';
-import eventAuth from './middlewares/eventAuth.js';
 import notFoundMiddleware from './middlewares/not-found.js';
 import authRouter from './routes/authRoutes.js'
 import eventRouter from './routes/eventRoutes.js'
 import otherRouter from './routes/otherRoutes.js'
+import checkUser from './middlewares/checkUser.js';
 
 
 const port = 5000;
 app.use(express.static(__dirname + '/public'));
 app.use(express.json());
+app.use(cookieparser())
 app.set('view engine', 'ejs');
+app.use('/api/v1/auth',authRouter );
+app.get('/login', (req,res)=>{
+    res.render('login',{});
+})
+
+app.get('/signup', (req,res)=>{
+    res.render('signup',{});
+})
+app.get('*',checkUser)
+app.post('*',checkUser)
+app.delete('*',checkUser)
+app.patch('*',checkUser)
+
 app.get('/',(req,res)=>{
-    res.render('proj',{})
+    req.cookies.adminId
+    res.render('home',{adminId:req.cookies.adminId})
 
 })
 app.get('/clubs/:id',(req,res)=>{
@@ -36,9 +52,7 @@ app.get('/register/:id',(req,res)=>{
 
 })
 
-
-app.use('/api/v1/auth',authRouter );
-app.use('/api/v1/event',eventAuth, eventRouter );
+app.use('/api/v1/event',eventRouter );
 app.use('/api/v1/', otherRouter);
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
