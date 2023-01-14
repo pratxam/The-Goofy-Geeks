@@ -111,7 +111,7 @@ nav{
     align-items: center;
     mix-blend-mode: multiply;
     position: sticky;
-    top: 0;
+    right: 200px;
     
 }
 nav img{
@@ -123,7 +123,7 @@ nav img{
     
 }
 #navbarNavDropdown ul li{
-    list-style: none;
+    list-style: none;s
     display: inline-block;
     position: relative;
     padding: 0px 30px;
