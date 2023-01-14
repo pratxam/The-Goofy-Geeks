@@ -114,3 +114,22 @@ document.getElementById('filterSubmit').onclick = function() {
     .then((data) => (data.json())).then((data) => (setCards(data)))
     modal.style.display = "none";
   }
+  const logoutUser=
+  ()=>{
+      fetch("http://localhost:5000/api/v1/auth/logout",{
+          method: 'POST',
+          headers: { 
+              'Content-Type': 'application/json'
+          },
+      }).then((response) =>{
+          if(!response.ok){
+              alert(data['msg']);
+              const error = response.data;
+                  return Promise.reject(error);
+          }
+          else{
+              window.location.replace("/login");                
+          }            
+      }).catch((error)=>{console.log(error)})
+  
+}

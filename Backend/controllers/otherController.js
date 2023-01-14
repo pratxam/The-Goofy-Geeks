@@ -1,6 +1,36 @@
 import { createCustomError } from "../errors/customError.js";
 import connection from '../database.js';
-
+//INSERT VALUES INTO REGISTER TABLE
+export const  insertRegister= async (req, res, next) => {
+    let flag = 0;
+    console.log("Registered")
+    try {
+        const { id : id } = req.params;
+                connection.query(`INSERT INTO register ( Uid, Eid) VALUES ("${req.cookies.userId}", "${id}")`,
+                    (err, results) => {
+                        if (err) { console.log(err); throw err;}
+                        console.log("Registered successfully")
+                        res.status(200).json({results});
+                    });        
+    } catch (error) {
+        next(error);
+    }
+}
+export const  deleteRegister= async (req, res, next) => {
+    let flag = 0;
+    console.log("Unregistered")
+    try {
+        const { id : id } = req.params;
+                connection.query(`DELETE from register ( Uid, Eid) VALUES ("${req.cookies.userId}", "${id}")`,
+                    (err, results) => {
+                        if (err) { console.log(err); throw err;}
+                        console.log("Unregistered successfully")
+                        res.status(200).json({results});
+                    });        
+    } catch (error) {
+        next(error);
+    }
+}
 //GET ALL CLUBS
 export const getAllClubs = async (req, res, next) => {
     try{
@@ -171,10 +201,56 @@ export const getEventsByClubs = async (req, res, next) => {
         next(error)
     }
 }
-
 // GET EVENT
 export const getEvent = async (req, res, next) => {
-    console.log("get event")
+    var check=false;
+    console.log("get event");
+    const { id : id } = req.params;
+    try{
+        connection.query('Select Uid,Eid from register where Uid = ' + req.cookies.userId+' and Eid = ' + id,(err, result) => {
+            console.log(result.length);
+            if (result.length==0) 
+            {   
+                check=false;
+            }
+            else{
+                check=true;
+            }
+        })
+    }
+    catch (error) {
+        next(error)
+    }
+    try {
+        var clubIdMap = new Map();
+        connection.query("select * from club", (err, result) => {
+            if (err) throw new Error(err);
+                result.forEach(function (element) {
+                clubIdMap.set(element.Cid, element.Cname);
+            });
+        });
+        connection.query("SELECT * FROM event where Eid="+id, (err, result) => {
+            if (err) throw err;
+            result.forEach(function (element) {
+                element.Cname = clubIdMap.get(element.C_id);
+            });
+            res.status(200).json({
+                'result':result,'checked':check
+            })
+        })
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+// GET EVENT
+export const getEventsByRegistration = async (req, res, next) => {
+
+}
+//GET ALL EVENTS FOR PARTICULAR USER
+export const getallEventsForUser = async (req, res, next) => {
+    console.log("get all events")
 
     try {
         var clubIdMap = new Map();
@@ -184,8 +260,8 @@ export const getEvent = async (req, res, next) => {
                 clubIdMap.set(element.Cid, element.Cname);
             });
         });
-        const { id : id } = req.params;
-        connection.query("SELECT * FROM event where Eid="+id, (err, result) => {
+        console.log(req.cookies.userId);
+        connection.query("SELECT * FROM event where Eid in ( select eid from register where Uid="+req.cookies.userId+")", (err, result) => {
             if (err) throw err;
             result.forEach(function (element) {
                 element.Cname = clubIdMap.get(element.C_id);
@@ -199,3 +275,4 @@ export const getEvent = async (req, res, next) => {
         next(error)
     }
 }
+

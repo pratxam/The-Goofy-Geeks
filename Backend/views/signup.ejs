@@ -23,45 +23,7 @@
     <p class="sign in">do you have an account? <a href="./login">Log in</a></p>
 </form>
 
-<script> 
-    const Uemail = document.getElementById("email")
-    const Upassword = document.getElementById("password")
-    
-    const submitForm=()=>{
-      if (Uemail.value.length===0||Upassword.value.length===0) {
-        alert("Please provide all values")
-      }
-      else{
-      let inputObj = {
-        password: Upassword.value,
-        email: Uemail.value,
-       
-      }
-
-      fetch("http://localhost:5000/api/v1/auth/signUp",{
-        method: 'POST',
-        headers: { 
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(inputObj)
-      }).then(async(response)=>{
-        const data = await response.json();
-        if(!response.ok){
-            alert(data['msg']);
-            const error = data;
-                return Promise.reject(error);
-        }
-        else{
-            <!-- const {user, token} = data;
-            localStorage.setItem("user", JSON.stringify(user));
-            localStorage.setItem("token", token); -->
-            window.location.replace("/login")
-        }
-      }).catch((error)=>{
-        console.log(error)
-      })
-    }
-    }
-
+<script src = "/signup.js"> 
   </script>
 </body>
+</html>

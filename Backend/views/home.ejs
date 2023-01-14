@@ -25,7 +25,7 @@
            <!-- <a href="proj.html"><img src="download.png" alt=""></a>-->
             <nav class="navbar navbar-expand-lg ">
                 <div class="container-fluid">
-                  <a class="navbar-brand" href="proj.html"><img src="images/12.jpeg" alt=""></a>
+                  <a class="navbar-brand" href="/"><img src="images/12.jpeg" alt=""></a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
@@ -35,7 +35,7 @@
                         <a class="nav-link active" aria-current="page" href="/">HOME</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">REGISTRATIONS</a>
+                        <a class="nav-link active" aria-current="page" href="/registrations">REGISTRATIONS</a>
                       </li>
                       <% if (adminId) { %>
                         <li class="nav-item dropdown" >
@@ -49,7 +49,7 @@
                         </li>
                       <% } %>
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">LOGOUT</a>
+                        <a class="nav-link active" aria-current="page" onclick="logoutUser()" href="/login">LOGOUT</a>
                       </li>
                       <!-- <li class="nav-item" >
                         <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CLUBS</a>

@@ -28,8 +28,9 @@ export const signUp = async (req, res, next) => {
             else {
                 connection.query(`INSERT INTO members ( Uname, Password) VALUES ("${email}", "${hashedPassword}")`,
                     (err, results) => {
-                        if (err) throw err;
-                        res.status(201);
+                        if (err) { console.log(err); throw err;}
+                        console.log("Hello")
+                        res.status(200).json({results});
                     });
 
             }
@@ -89,7 +90,22 @@ export const login = async (req, res, next) => {
     }
 
 }
-
+//LOGOUT USER
+export const logoutUser = async (req, res, next) => {
+    try
+    {
+        console.log("guuuuu");
+            res.cookie('userId',"",{path:'/'})
+            res.cookie('adminId',"",{path:'/'})
+            res.cookie('token',"",{path:'/'})
+            res.status(200).json({})
+            if(err) throw err;
+    }
+    catch(err)
+    {
+        next(err);
+    }
+}
 
 //UPDATE USER
 export const updateUser = async (req, res, next) => {

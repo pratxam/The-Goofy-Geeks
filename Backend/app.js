@@ -52,6 +52,11 @@ app.get('/register/:id',(req,res)=>{
 
 })
 
+app.get('/registrations',(req,res)=>{
+    res.render('registrations',{})
+
+})
+
 app.use('/api/v1/event',eventRouter );
 app.use('/api/v1/', otherRouter);
 app.use(notFoundMiddleware);
