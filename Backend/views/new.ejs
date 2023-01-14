@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/1style.css">
+    <title>ADMIN</title>
+</head>
+<body>
+    <div class="container">
+        <h1>ADD AN EVENT HERE</h1>
+        <form >
+      
+          <label for="fname">NAME</label>
+          <input type="text" id="name" name="name" required>
+      
+          <label for="date">DATE</label>
+          <input type="text" id="date" name="date" required>
+          
+          <label for="venue">VENUE</label>
+          <input type="text" id="venue" name="venue" required>
+
+          <label for="summary">SUMMARY</label>
+          <input type="text" id="summary" name="summary" required>
+
+          <label for="link">REGISTRATION LINK</label>
+          <input type="text" id="link" name="link" required>
+
+          <label for="photo">ADD IMAGE</label>
+          <input type="text" id="photo" name="photo" >
+      
+          <label for="description">DESCRIPTION</label>
+          <textarea name="description" id="description" placeholder="Write description" style="height:200px"></textarea>
+      
+          <input type="button" id="submit-btn" value="Submit" onclick="submitForm()">
+          <input type="button" id="home-btn" value="Home">
+      
+        </form>
+      </div>
+      <script src="/new.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@media print {
+    body {-webkit-print-color-adjust: exact;}
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header{
+    text-align: center;
+    font-size: 50px;
+    font-weight: 900;
+    font-style:cursive;
+}
+body{
+    background:white fixed;
+    padding:50px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+}
+#btn{
+    display: inline-block;
+    position: absolute;
+    right: 30px;
+    top: 15px;
+    padding: 10px;
+    width: 100px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    border: 2px solid #3eff37;
+    background: transparent;
+    background-color: rgb(31, 160, 11);
+    color: #fff;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 10px;
+}
+#btn:hover{
+        background-color: darkgreen;
+}
+
+
+
+.card-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.card{
+    width: 250px;
+    height: auto;
+    position: relative;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    padding: 20px;
+    transition: all .3s ease-in;
+}
+.card > *{
+    padding: 10px;
+}
+.card .card-image{
+    height: 150px;
+    width: 150px;
+    border: 5px solid #022a3c;
+    border-radius: 50%;
+    background-position: center center;
+    background-size: cover;    
+}
+.card .card-title{
+    padding: 20px 10px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    text-shadow: 1px 0px 2px #262654;
+}
+.card:nth-child(1) .card-image{
+    background-image: url(.jpg);
+}
+.card:nth-child(2) .card-image{
+    background-image: url(tech2.jpg);
+}
+.card:nth-child(3) .card-image{
+    background-image: url(img\ tech.jpg);
+}
+.card:hover{
+    background: #e84393;
+    color: #fff;
+    box-shadow: 0px 0px 8px 5px #000000;
+    cursor: pointer;
+
+}
+.card .card-text{
+    line-height: 20px;
+    font-size: 400;
+}
+.date{
+    padding:0;
+    
+}
+.card-image2{
+    height: 150px;
+    width: 150px;
+    border: 5px solid #022a3c;
+    border-radius: 50%;
+    background-position: center center;
+    background-size: cover;    
+}
+.card:nth-child(1) .card-image2{
+    background-image: url(c2e1.jpg);
+}
+.card:nth-child(2) .card-image2{
+    background-image: url(c2e2.jpg);
+}
+.card:nth-child(3) .card-image2{
+    background-image: url(c2e3.jpg);
+}
+.container#blur.active{
+    filter: blur(20px);
+    pointer-events: none;
+    user-select: none;
+}
+#popup{
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    padding: 50px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    background: rgb(220, 220, 220);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+}
+#popup.active{
+    top:40%;
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s;
+}

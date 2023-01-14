@@ -1,0 +1,61 @@
+body
+{
+    /* background: url(11.jpeg); */
+    background-color: black;
+
+}
+.container h1
+{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+.container
+{
+    
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+    border: 15px solid goldenrod;
+  
+}
+
+
+
+input[type=text], select, textarea {
+    width: 100%; /* Full width */
+    padding: 12px; /* Some padding */ 
+    border: 2px solid goldenrod; /* Gray border */
+    border-radius: 10px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical ;/* Allow the user to vertically resize the textarea (not horizontally) */
+    
+    
+  }
+  
+  /* Style the submit button with a specific background color etc */
+  input[type=button] {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  
+  /* When moving the mouse over the submit button, add a darker green color */
+  input[type=button]:hover {
+    background-color: #45a049;
+  }
+  
+  /* Add a background color and some padding around the form */
+  .container {
+    border-radius: 5px;
+    background-color: #ebe2e2;
+    padding: 20px;
+    color: rgb(0, 0, 0);
+  }

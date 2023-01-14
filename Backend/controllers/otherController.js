@@ -21,7 +21,7 @@ export const  deleteRegister= async (req, res, next) => {
     console.log("Unregistered")
     try {
         const { id : id } = req.params;
-                connection.query(`DELETE from register ( Uid, Eid) VALUES ("${req.cookies.userId}", "${id}")`,
+                connection.query(`DELETE from register where Uid="${req.cookies.userId}"and Eid= "${id}"`,
                     (err, results) => {
                         if (err) { console.log(err); throw err;}
                         console.log("Unregistered successfully")
