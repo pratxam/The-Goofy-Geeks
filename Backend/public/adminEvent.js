@@ -68,3 +68,7 @@ function del(id) {
     })
 
 }
+
+const backHome = ()=>{
+    window.location.replace("/")
+}

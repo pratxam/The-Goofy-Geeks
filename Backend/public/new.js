@@ -47,3 +47,6 @@ const submitForm=()=>{
 }
 }
 
+const backHome =()=>{
+  window.location.replace("/")
+}
