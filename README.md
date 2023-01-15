@@ -30,7 +30,7 @@ Sharwin->Cards
 Prajwal->Last page
 
 Samanwitha, Anirudh and Vikas contributed towards backend,
-Samanwitha->
+Samanwitha->Lgin part
 Anirudh->Login and Admin part
 Vikas->Clubs and evnts
 
@@ -40,3 +40,5 @@ Frameworks : Bootstrap
 Backend  : Nodejs
 Framework : Expressjs
 Database : MYSQL
+
+
