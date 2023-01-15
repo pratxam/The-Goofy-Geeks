@@ -1,9 +1,9 @@
 import mysql from 'mysql2'
 const connection=mysql.createConnection({
     host:"localhost",
-    database:"the_goofy_geeks",
+    database:"goofy_geeks",
     user:"root",
-    password:"mysql1234database"
+    password:"NannaSQL@Nitte1"
 });
 // module.exports=connection;
 

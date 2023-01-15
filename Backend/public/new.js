@@ -24,6 +24,7 @@ const submitForm=()=>{
 
   }
   let Utoken = localStorage.getItem("token") 
+  console.log(Utoken)
 
   fetch("http://localhost:5000/api/v1/event/createEvent",{
     method: 'POST',
@@ -33,11 +34,11 @@ const submitForm=()=>{
     },
     body: JSON.stringify(inputObj)
   }).then(async(response)=>{
+    const data = await response.json();
     if(!response.ok){
     const error = data;
         return Promise.reject(error);
 }
-    const data = await response.json();
     console.log(data);
     window.location.replace("/adminEvent")
   }).catch((error)=>{

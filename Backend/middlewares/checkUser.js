@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken';
 import { createCustomError } from '../errors/customError.js';
 
 const checkUser = async (req, res, next)=>{
-    console.log('Checking user');
     const token = req.cookies.token
     const userId_cookie = req.cookies.userId
     const adminId_cookie = req.cookies.adminId
@@ -13,6 +12,7 @@ const checkUser = async (req, res, next)=>{
     else{
         try {
             const {userId} = jwt.verify(token, "goofygeeks");
+            req.user = {userId: userId}
             console.log(userId, adminId_cookie, adminId_cookie != userId)
             if(userId_cookie != userId || (adminId_cookie && adminId_cookie != userId)) {
                 res.redirect('/login')

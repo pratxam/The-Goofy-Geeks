@@ -39,6 +39,7 @@ app.patch('*',checkUser)
 
 app.get('/',(req,res)=>{
     req.cookies.adminId
+    req.cookies.token
     res.render('home',{adminId:req.cookies.adminId})
 
 })
@@ -57,10 +58,10 @@ app.get('/registrations',(req,res)=>{
 
 })
 app.get('/new',(req,res)=>{
-    res.render('new',{})
+    res.render('new',{token:req.cookies.token})
 })
 app.get('/adminEvent',(req,res)=>{
-    res.render('adminEvent',{})
+    res.render('adminEvent',{token:req.cookies.token})
 })
 app.use('/api/v1/event',eventRouter );
 app.use('/api/v1/', otherRouter);

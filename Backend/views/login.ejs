@@ -52,6 +52,8 @@
                 return Promise.reject(error);
         }
         else{
+          let Token = data.token
+          localStorage.setItem("token", Token)
            window.location.replace("/");
         }
       }).catch((error)=>{

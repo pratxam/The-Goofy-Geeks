@@ -3,7 +3,6 @@ import bcrypt from 'bcryptjs'
 import { createCustomError } from "../errors/customError.js";
 import connection from '../database.js';
 
-
 //SIGNUP USER
 export const signUp = async (req, res, next) => {
 
@@ -30,6 +29,7 @@ export const signUp = async (req, res, next) => {
                     (err, results) => {
                         if (err) { console.log(err); throw err;}
                         console.log("Hello")
+                       
                         res.status(200).json({results});
                     });
 
@@ -68,16 +68,18 @@ export const login = async (req, res, next) => {
                         connection.query(`SELECT * FROM admin WHERE aid = ${userId}`, (er, result2) => {
                             if (er) throw er;
                             if (result2.length === 0) {
+                               
                                 res.cookie('userId',userId,{path:'/', maxAge:1000*60*60*24})
                                 res.cookie('adminId','',{path:'/', maxAge:1000*60*60*24})
                                 res.cookie('token',token,{path:'/', maxAge:1000*60*60*24})
-                                res.status(200).json({})
+                                res.status(200).json({ token })
                             }
                             else {
+                               
                                 res.cookie('userId',results[0].Uid,{path:'/'})
                                 res.cookie('adminId',result2[0].aid,{path:'/'})
                                 res.cookie('token',token,{path:'/'})
-                                res.status(200).json({})
+                                res.status(200).json({ token})
                             }
                         })
                     }

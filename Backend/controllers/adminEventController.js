@@ -9,12 +9,14 @@ export const createEvent = async (req, res, next) => {
         let flag = 0;
         const { date, name, description, summary, link, venue, photo } = req.body;
         const { userId } = req.user
+        console.log('USERID '+userId);
+        
         if (!date || !name || !description || !link || !summary || !venue || !photo) {
             return next(createCustomError("Please provide all values", 400));
         }
 
         let clubId;
-        connection.query(`SELECT Uid FROM members WHERE Uname = "${userId}"`, (err, results) => {
+        connection.query(`SELECT Uid FROM members WHERE Uid = "${userId}"`, (err, results) => {
             if (err) throw err;
             else {
                 let uID = results[0].Uid;
@@ -63,7 +65,7 @@ export const editEvent = async (req, res, next) => {
         }
 
         // let clubId;
-        connection.query(`SELECT Uid FROM members WHERE Uname = "${userId}"`, (err, results) => {
+        connection.query(`SELECT Uid FROM members WHERE Uid = "${userId}"`, (err, results) => {
             if (err) throw err;
             else {
                 let uID = results[0].Uid;
@@ -115,7 +117,7 @@ export const deleteEvent = async (req, res, next) => {
     try {
         const { id: eventId } = req.params;
         const { userId } = req.user;
-        connection.query(`SELECT Uid FROM members WHERE Uname = "${userId}"`, (err, results) => {
+        connection.query(`SELECT Uid FROM members WHERE Uid = "${userId}"`, (err, results) => {
             if (err) throw err;
             else {
                 let uID = results[0].Uid;
@@ -164,7 +166,7 @@ export const deleteEvent = async (req, res, next) => {
 export const getAllEvent = async (req, res, next) => {
     try {
         const { userId } = req.user;
-        connection.query(`SELECT Uid FROM members WHERE Uname = "${userId}"`, (err, results) => {
+        connection.query(`SELECT Uid FROM members WHERE Uid = "${userId}"`, (err, results) => {
             if (err) throw err;
             else {
                 let uID = results[0].Uid;

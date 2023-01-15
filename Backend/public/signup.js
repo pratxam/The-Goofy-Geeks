@@ -26,6 +26,7 @@ const submitForm=
                     return Promise.reject(error);
             }
             else{
+                // console.log(response);
                 window.location.replace("/login");                
             }            
         }).catch((error)=>{console.log(error)})
