@@ -116,6 +116,7 @@ document.getElementById('filterSubmit').onclick = function() {
   }
   const logoutUser=
   ()=>{
+    localStorage.removeItem("token")
       fetch("http://localhost:5000/api/v1/auth/logout",{
           method: 'POST',
           headers: { 
