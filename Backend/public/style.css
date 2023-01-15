@@ -57,8 +57,13 @@
     overflow: hidden;
     border-radius: 10px;
 }
+.btn-out{
+    color: black;
+    border-color: black;
+    
+}
 .btn:hover{
-    background-color: grey;
+    background-color: rgb(162, 160, 160);
 }
 .modal {
     display: none; /* Hidden by default */

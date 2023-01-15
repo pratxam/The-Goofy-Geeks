@@ -11,7 +11,7 @@ function setCards(data) {
             "</div>";
     }
     else {
-        htmlString=htmlString+"<div class=\"card-container\">"
+        htmlString=htmlString+"<div class=\"card-container\">" 
         while(i<result.length){            
             for(var j=0; j<5&&i<result.length; j++,++i){
                 const a = result[i];
@@ -36,7 +36,8 @@ fetch('http://localhost:5000/api/v1/getClub/'+clubId,{method: 'GET'})
 .then((data) => (data.json())).then((data) => {
     result=data.result[0];
     console.log(result);
-    htmlString = "<div class=\"title\">\
+    htmlString = "<div class=\"title\" style=\"display: flex; flex-direction: column;\">\
+        <img class=\"new-image\" src=\"https://nmamit.nitte.edu.in/img/dep/cs/club/finiteloop.jpg\" height=\"73px\" style=\"border-radius: 67px\"/>\
         <h1>"+result['Cname']+"</h1>\
         </div>\
         <div class=\"all\">\
@@ -62,7 +63,7 @@ fetch('http://localhost:5000/api/v1/getClub/'+clubId,{method: 'GET'})
         </div>\
         <div class=\"a6\">\
             <h3>WEBSITE : </h3>\
-            <a href=\""+result['Cwebsite']+"\">"+result['Cwebsite']+"</a>\
+            <a href=\""+result['Cwebsite']+"\" style=\"color: yellow; text-decoration: none;\" class=\"underline\">"+result['Cwebsite']+"</a>\
         </div>\
         </div>"
         document.getElementById("clubDetails").innerHTML=htmlString;

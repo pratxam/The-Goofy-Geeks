@@ -32,7 +32,7 @@ let head = document.getElementById("heading");
                 <p class="card-text" style="word-wrap: break-word; max-width:240px;">
                     ${element.Esummary}
                 </p>
-                <button onclick="del(${element.Eid})" type="button" class="btn btn-outline-warning">Delete</button>          
+                <button onclick="del(${element.Eid})" type="button" class="btn btn-out btn-outline-warning">Delete</button>          
                 
                 `
                 card.innerHTML += info
